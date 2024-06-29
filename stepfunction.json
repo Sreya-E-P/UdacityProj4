@@ -1,13 +1,14 @@
-"Comment": "A description of my state machine",
+{
+  "Comment": "A description of my state machine",
   "StartAt": "SerializeImage",
   "States": {
     "SerializeImage": {
       "Type": "Task",
-      "Resource": "arn:aws:states:::lambda:invoke",
+      "Resource": "arn:aws:states:::aws-sdk:lambda:invoke",
       "OutputPath": "$.Payload",
       "Parameters": {
         "Payload.$": "$",
-        "FunctionName": "arn:aws:lambda:us-east-1:158759902482:function:SerializeImage:$LATEST"
+        "FunctionName": "arn:aws:lambda:us-east-1:158759902482:function:serializeImages"
       },
       "Retry": [
         {
@@ -26,11 +27,11 @@
     },
     "Classification": {
       "Type": "Task",
-      "Resource": "arn:aws:states:::lambda:invoke",
+      "Resource": "arn:aws:states:::aws-sdk:lambda:invoke",
       "OutputPath": "$.Payload",
       "Parameters": {
         "Payload.$": "$",
-        "FunctionName": "arn:aws:lambda:us-east-1:158759902482:function:Classification:$LATEST"
+        "FunctionName": "arn:aws:lambda:us-east-1:158759902482:function:classifyImage"
       },
       "Retry": [
         {
@@ -49,11 +50,11 @@
     },
     "Inference": {
       "Type": "Task",
-      "Resource": "arn:aws:states:::lambda:invoke",
+      "Resource": "arn:aws:states:::aws-sdk:lambda:invoke",
       "OutputPath": "$.Payload",
       "Parameters": {
         "Payload.$": "$",
-        "FunctionName": "arn:aws:lambda:us-east-1:158759902482:function:Inference:$LATEST"
+        "FunctionName": "arn:aws:lambda:us-east-1:158759902482:function:filterInferences"
       },
       "Retry": [
         {
